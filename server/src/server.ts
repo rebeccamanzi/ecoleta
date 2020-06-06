@@ -1,16 +1,15 @@
+// Rota: Endereço completo da requisição
+// Recurso: Qual entidade estamos acessando do sistema
+// Request Param: Identificar um recurso (ex: id)
+// Query param: filtros "opcionais", paginação (ex: users/0?search=on)
+
 import express from 'express';
+import routes from './routes'
 
 const app = express();
 
-app.get('/users', (request, response) => {
-  console.log('Listagem de usuários');
+app.use(express.json()); // "pluggin" para o express entender requisição em json
 
-  response.json([
-    'Diego',
-    'Rebecca',
-    'Vinicius',
-    'Bruno'
-  ]);
-});
+app.use(routes);
 
 app.listen(3333);
